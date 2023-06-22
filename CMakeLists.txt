@@ -8,7 +8,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(
     WEBKIT2GTK
     REQUIRED
-    IMPORTED_TARGET webkit2gtk-4.1
+    IMPORTED_TARGET webkitgtk-6.0
 )
 
 add_executable(wkwebviewtest main.cpp)

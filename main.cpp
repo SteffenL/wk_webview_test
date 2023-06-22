@@ -1,5 +1,5 @@
 #include <gtk/gtk.h>
-#include <webkit2/webkit2.h>
+#include <webkit/webkit.h>
 
 #include <iostream>
 #include <string>
@@ -89,14 +89,14 @@ void onActivate(GtkApplication* gtkApp, gpointer userData) {
     webkit_settings_set_enable_write_console_messages_to_stdout(settings, 1);
     webkit_settings_set_enable_developer_extras(settings, 1);
 
-    gtk_container_add(GTK_CONTAINER(gtkWindow), GTK_WIDGET(wkWebView));
-    gtk_widget_show_all(GTK_WIDGET(gtkWindow));
+    gtk_window_set_child(GTK_WINDOW(gtkWindow), GTK_WIDGET(wkWebView));
+    gtk_window_present(GTK_WINDOW(gtkWindow));
 
     webkit_web_view_load_uri(wkWebView, "app:///");
 }
 
 int main(int argc, char** argv) {
-    auto* gtkApp{gtk_application_new(nullptr, G_APPLICATION_FLAGS_NONE)};
+    auto* gtkApp{gtk_application_new(nullptr, G_APPLICATION_DEFAULT_FLAGS)};
     g_signal_connect(gtkApp, "activate", G_CALLBACK(onActivate), nullptr);
     auto status{g_application_run(G_APPLICATION(gtkApp), argc, argv)};
     g_object_unref(gtkApp);
