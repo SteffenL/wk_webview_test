@@ -17,7 +17,7 @@ std::string makeGoToHtml(const std::string_view to) {
 
 std::string makeRedirectToHtml(const std::string_view to) {
     std::string result;
-    result = "<p>Redirect to <a href=\"";
+    result = "<p>Should have redirected to <a href=\"";
     result += to;
     result += "\">";
     result += to;
